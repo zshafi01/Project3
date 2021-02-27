@@ -1,0 +1,14 @@
+com\simplilearn\CustomerRepository.class
+com\simplilearn\UserRepository.class
+com\simplilearn\CustomerService.class
+com\simplilearn\Shoes.class
+com\simplilearn\InedxController.class
+com\simplilearn\User.class
+com\simplilearn\ShoesRepository.class
+com\simplilearn\UserServiceImpl.class
+com\simplilearn\ShoesServiceImpl.class
+com\simplilearn\SignupController.class
+com\simplilearn\UserService.class
+com\simplilearn\Customer.class
+com\simplilearn\UserServiceConfig.class
+com\simplilearn\ShoesService.class
