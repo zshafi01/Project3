@@ -7,9 +7,8 @@
 <title>Dashboard</title>
 </head>
 <body>
-<a href="Customer.jsp">Maneging Customer</a>
-<a href="Shoes.jsp">Maneging Shoes</a>
-
+<a href="customer.jsp">Manage Customers</a>
+<a href="shoes"> Manage Shoes</a>
 
 </body>
 </html>

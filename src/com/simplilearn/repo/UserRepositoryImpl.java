@@ -1,13 +1,14 @@
 package com.simplilearn.repo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.RowMapper;
 
 import com.simplilearn.entities.User;
 
@@ -50,8 +51,26 @@ public class UserRepositoryImpl implements UserRepository{
 
 	@Override
 	public List<User> getUsers() {
-		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<User> findbyemail(String email) {
+		String sql = "SELECT * FROM sportshoesdb.user where email=?";
+		return jdbcTemplate.query(sql, new UserMapper(),email);
+	}
+	
+	private static final class UserMapper implements RowMapper<User> {
+	    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+	      User user = new User();
+	      user.setId(rs.getString("id"));
+	      user.setAddress(rs.getString("address"));
+	      user.setEmail(rs.getString("email"));
+	      user.setName(rs.getString("name"));
+	      user.setPassword(rs.getString("password"));
+	      user.setType(rs.getString("type"));
+	      return user;
+	    }
+	  }  
 
 }

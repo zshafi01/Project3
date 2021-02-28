@@ -6,6 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import com.simplilearn.repo.ShoesRepository;
+import com.simplilearn.repo.ShoesRepositoryImp;
 import com.simplilearn.repo.UserRepository;
 import com.simplilearn.repo.UserRepositoryImpl;
 
@@ -29,4 +31,9 @@ public class Config {
     }
 	
 
+	@Bean
+    public ShoesRepository getShoesRepository() {
+        return new ShoesRepositoryImp(dataSource());
+    }
+	
 }

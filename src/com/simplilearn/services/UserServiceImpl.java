@@ -92,4 +92,21 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public User getUserByEmail(String email, String password) {
+		List<User> userByEmailList = userRepository.findbyemail(email);
+		//if there is no user by the eamil
+		if(userByEmailList==null || userByEmailList.isEmpty()) {
+			return null;
+		} else {
+			//take the first user
+			User user=userByEmailList.get(0);
+			if(password.equalsIgnoreCase(user.getPassword())) {
+				return user;
+			} else {
+				return null;
+			}
+		}
+	}
+
 }

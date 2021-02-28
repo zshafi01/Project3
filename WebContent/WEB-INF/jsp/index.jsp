@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +18,12 @@ body {
 .card {
 	float: left;
 	width: 20%;
+	height:200px;
 	min-width:200px;
 	padding: 0 10px;
+}
+.card img{
+height: 160px;
 }
 
 .main {
@@ -43,31 +48,17 @@ clear: left;
 		</div>
 
 		<div id="main-body" class="row">
+		<!-- for each shoeses -->
+		
+		<c:forEach var="shoe" items="${allShoes}"> 
 			<div class="card">
-					<img src="../image/puma.jpg" alt="puma" style="width: 50%">
-					<h5>PUMA</h5>
-			
-					<h6>$39</h6>
+					<img src=<c:out value="${shoe.image}"/> alt="puma" style="width: 50%">
+					<h5><c:out value="${shoe.brand_Name}"/></h5>
+					<h6><c:out value="${shoe.price}"/></h6>
 			</div>
-			<div class="card">
-					<img src="image/adidas.jpg" alt="adidas" style="width: 50%">
-					<h5>ADIDAS</h5>
-				
-					<h6>$79</h6>
-				</div>
-			<div class="card">
-					<img src="image/nike.jpg" alt="nike" style="width: 50%">
-					<h5>NIKE</h5>
-				
-					<h6>$89</h6>
-				</div>
-			<div class="card">
-					<img src="image/jordan.jpg" alt="jordan" style="width: 50%">
-					<h5>JORDAN</h5>
-					
-					<h6>$110</h6>
-
-				</div>
+		</c:forEach>
+			
+			
 		</div>
 		<div id="main-footer" class="row">
 			<%@ include file="footer.jsp"%>

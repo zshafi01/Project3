@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.simplilearn.entities.Shoes;
 import com.simplilearn.entities.User;
+import com.simplilearn.services.ShoesService;
 import com.simplilearn.services.UserService;
 
 @Controller
@@ -21,10 +23,18 @@ public class SignupController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	ShoesService shoesService;
+	
 	@RequestMapping(path = "/signup")
-	 String get(ModelMap model) {
+	 String index(ModelMap model) {
 		return "SignUp";
 	}
+	@RequestMapping(path = "/login")
+	 String login(ModelMap model) {
+		return "Login";
+	}
+	
 	
 	@RequestMapping(path = "/signupSave", method = RequestMethod.POST)
 	public ModelAndView userForm(@ModelAttribute User user){ // display form
@@ -32,41 +42,43 @@ public class SignupController {
 		System.out.print("saving.................."+user.toString());
 		return new ModelAndView("Login");
 	}
-//
-//	@RequestMapping("/")
-//	public ModelAndView home(){
-//		List<User> list_of_users = userService.retreveAllUserInfo();
-//		ModelAndView model = new ModelAndView("index");
-//		model.addObject("users", list_of_users);
-//		return model;// logical view name + model
-//	}
-//	
-//	@RequestMapping("/new")
-//	public String userForm(Map<String, Object> model){ // display form
-//		User user = new User();
-//		model.put("user", user);
-//		return "new_user"; // logical view name
-//	}
-////	
-//	@RequestMapping(value="/save", method=RequestMethod.POST)
-//	public String createCustomer(@ModelAttribute("user") User user){
-//		userService.saveUser(user);
-//		return "redirect:/"; // list of user page
-//	}
-//	
-//	@RequestMapping("/edit")
-//	public ModelAndView editCustomer(@RequestParam String id){
-//		ModelAndView modelAndView = new ModelAndView("edit_user");
-//		User user = userService.retreveUserById(id);
-//		modelAndView.addObject("user", user);
-//		return modelAndView;
-//	}
-//	
-//	@RequestMapping("/delete")
-//	public String deleteCustomer(@RequestParam String id){
-//		userService.deleteUser(id);
-//		return "redirect:/";
-//	}
+	
+	
+	
+	@RequestMapping(path="/login", method = RequestMethod.POST)
+	public ModelAndView loginForm(@ModelAttribute User user) {
+		
+		User userfound = userService.getUserByEmail(user.getEmail(), user.getPassword());
+		
+		if(userfound!=null) {
+			if(userfound.getType().equalsIgnoreCase("admin")) {
+				return new ModelAndView("AdminDashBoard");
+			} else {
+				return new ModelAndView("UserDashBoard");
+			}
+			
+		} else {
+			return new ModelAndView("Login");
+		}
+	}
+	
+	@RequestMapping(path = "/shoes")
+	 String shoes(ModelMap model) {
+		return "shoes";
+	}
+	
+	@RequestMapping(path = "/shoes", method = RequestMethod.POST)
+	public ModelAndView shoesForm(@ModelAttribute Shoes shoes){ // display form
+		boolean issaved=shoesService.saveShoes(shoes);
+		System.out.print("saving.................."+shoes.toString());
+		if(issaved) {
+		return new ModelAndView("redirect:/");
+		}else {
+			return new ModelAndView("shoes");
+		}
+	}
+	
+
 
 
 }

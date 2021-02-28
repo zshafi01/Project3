@@ -1,4 +1,4 @@
 <div>
-<a href="signup">Sign Up</a>  <a href="Login.jsp">Log In</a>
+<a href="signup">Sign Up</a>  <a href="login">Log In</a>
 <hr>
 </div>

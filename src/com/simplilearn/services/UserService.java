@@ -19,5 +19,7 @@ public interface UserService {
 	public void updateUser(User user);
 
 	public void deleteUser(String id);
+	
+	public User getUserByEmail(String email,String password);
 
 }
