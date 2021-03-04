@@ -1,50 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Manage Shoes</title>
 </head>
 <body>
 
-<form method="post" action="shoes">
-
-<table>
+	<div id="main-header" class="row">
+		<%@ include file="header1.jsp"%>
+	</div>
+	<div align="center">
+		<h2>Shoes Manager</h2>
+		<h3>
+			<a href="addshoes">Add New Shoes</a>
+		</h3>
+		<table border="1" cellpadding="5">
 			<tr>
-				<td>Brand-Name
-				<td>
-				<td><input type="text" name="brand_Name">
-				<td>
-			</tr>
-			<tr>
-				<td>Color
-				<td>
-				<td><input type="text" name="color">
-				<td>
-			</tr>
-			<tr>
-				<td>Size
-				<td>
-				<td><input type="text" name="size">
-				<td>
-			</tr>
-			<tr>
-				<td>Image
-				<td>
-				<td><input type="file" name="image">
-				<td>
-			</tr>
-			<tr>
-				<td>price
-				<td>
-				<td><input type="text" name="price">
-				<td>
+				<th>ID</th>
+				<th>Brand Name</th>
+				<th>Color</th>
+				<th>Size</th>
+				<th>Image</th>
+				<th>price</th>
+				<th>Action</th>
 			</tr>
 
-</table>
-<input type="submit" value="save">
+			<c:forEach items="${shoes}" var="shoes">
+				<tr>
+					<td>${shoes.id}</td>
+					<td>${shoes.brandName}</td>
+					<td>${shoes.color}</td>
+					<td>${shoes.size}</td>
+					<td>${shoes.image}</td>
+					<td>${shoes.price}</td>
 
-</form>
+
+					<td><a href="updateshoes?id=${shoes.id}">Edit</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; <a href="deleteshoes?id=${shoes.id}">Delete</a></td>
+				</tr>
+			</c:forEach>
+
+		</table>
+	</div>
 </body>
 </html>

@@ -1,9 +1,6 @@
 package com.simplilearn.services;
 
 import java.util.List;
-
-import org.springframework.stereotype.Component;
-
 import com.simplilearn.entities.User;
 
 public interface UserService {
@@ -14,12 +11,12 @@ public interface UserService {
 
 	public User retreveUserById(String id);
 
-	public User saveUser(User user);
+	public boolean saveUser(User user);
 
-	public void updateUser(User user);
+	public boolean updateUser(User user);
 
 	public void deleteUser(String id);
-	
-	public User getUserByEmail(String email,String password);
+
+	public User getUserByEmail(String email, String password);
 
 }

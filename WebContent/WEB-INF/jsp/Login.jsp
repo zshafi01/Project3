@@ -7,7 +7,6 @@
 <title>Log in</title>
 </head>
 <body>
-${user.name }
 	<form method="post" action="login">
 		<table>
 

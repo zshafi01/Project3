@@ -1,20 +1,23 @@
 package com.simplilearn.config;
+
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
+import com.simplilearn.repo.CustomerRepository;
+import com.simplilearn.repo.CustomerRepositoryImp;
 import com.simplilearn.repo.ShoesRepository;
 import com.simplilearn.repo.ShoesRepositoryImp;
 import com.simplilearn.repo.UserRepository;
 import com.simplilearn.repo.UserRepositoryImpl;
 
 @Configuration
-@ComponentScan(basePackages={"com.simplilearn","com.simplilearn.config","com.simplilearn.domain","com.simplilearn.repository","com.simplilearn.service"})
+@ComponentScan(basePackages = { "com.simplilearn", "com.simplilearn.config", "com.simplilearn.domain",
+		"com.simplilearn.repository", "com.simplilearn.service" })
 public class Config {
-	
+
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -24,16 +27,20 @@ public class Config {
 		dataSource.setPassword("rootroot");
 		return dataSource;
 	}
-	
-	@Bean
-    public UserRepository getUserRepository() {
-        return new UserRepositoryImpl(dataSource());
-    }
-	
 
 	@Bean
-    public ShoesRepository getShoesRepository() {
-        return new ShoesRepositoryImp(dataSource());
-    }
-	
+	public UserRepository getUserRepository() {
+		return new UserRepositoryImpl(dataSource());
+	}
+
+	@Bean
+	public ShoesRepository getShoesRepository() {
+		return new ShoesRepositoryImp(dataSource());
+	}
+
+	@Bean
+	public CustomerRepository getCustomerRepository() {
+		return new CustomerRepositoryImp(dataSource());
+	}
+
 }

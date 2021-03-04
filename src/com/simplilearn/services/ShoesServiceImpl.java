@@ -1,10 +1,8 @@
 package com.simplilearn.services;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.simplilearn.entities.Shoes;
 import com.simplilearn.repo.ShoesRepository;
 
@@ -13,46 +11,58 @@ public class ShoesServiceImpl implements ShoesService {
 
 	@Autowired
 	private ShoesRepository shoesRepository;
-	
+
 	@Override
 	public long retreveShoesCount() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public List<Shoes> retreveAllShoesInfo() {
-		// TODO Auto-generated method stub
-		return shoesRepository.getShoes();
+		return shoesRepository.getAllShoes();
 	}
 
 	@Override
 	public Shoes retreveShoesById(String id) {
-		// TODO Auto-generated method stub
+		List<Shoes> listofshoes = shoesRepository.getById(id);
+		if (listofshoes != null && !listofshoes.isEmpty()) {
+			return listofshoes.get(0);
+		}
 		return null;
 	}
 
 	@Override
 	public boolean saveShoes(Shoes shoes) {
 		try {
-		  shoesRepository.saveOrUpdate(shoes);
-		  return true;
-		}catch (Exception e) {
-			// TODO: handle exception
+			shoesRepository.saveOrUpdate(shoes);
+			return true;
+		} catch (Exception e) {
 			return false;
 		}
 	}
 
 	@Override
-	public void updateShoes(Shoes shoes) {
-		// TODO Auto-generated method stub
-		
+	public boolean updateShoes(Shoes shoes) {
+		try {
+			shoesRepository.saveOrUpdate(shoes);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 	@Override
-	public void deleteShoes(String id) {
-		// TODO Auto-generated method stub
-		
+	public boolean deleteShoes(String id) {
+
+		try {
+			shoesRepository.delete(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 }

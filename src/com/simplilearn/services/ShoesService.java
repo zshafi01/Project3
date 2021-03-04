@@ -5,7 +5,7 @@ import java.util.List;
 import com.simplilearn.entities.Shoes;
 
 public interface ShoesService {
-	
+
 	public long retreveShoesCount();
 
 	public List<Shoes> retreveAllShoesInfo();
@@ -14,9 +14,8 @@ public interface ShoesService {
 
 	public boolean saveShoes(Shoes shoes);
 
-	public void updateShoes(Shoes shoes);
+	public boolean updateShoes(Shoes shoes);
 
-	public void deleteShoes(String id);
-	
+	public boolean deleteShoes(String id);
 
 }

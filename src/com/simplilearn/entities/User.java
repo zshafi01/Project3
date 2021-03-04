@@ -1,13 +1,9 @@
 package com.simplilearn.entities;
 
-import java.util.UUID;
-
-
 public class User {
 
 	private String id;
 	private String name;
-	private String address;
 	private String email;
 	private String password;
 	private String type;
@@ -16,10 +12,9 @@ public class User {
 		super();
 	}
 
-	public User(String name, String address, String email, String password, String type) {
+	public User(String name, String email, String password, String type) {
 		super();
 		this.name = name;
-		this.address = address;
 		this.email = email;
 		this.password = password;
 		this.type = type;
@@ -39,14 +34,6 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public String getEmail() {
@@ -75,11 +62,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return String.format("User [id=%s, name=%s, address=%s, email=%s, password=%s, type=%s]", id, name, address,
-				email, password, type);
+		return String.format("User [id=%s, name=%s, email=%s, password=%s, type=%s]", id, name, email, password, type);
 	}
-	
-	
-	
 
 }
